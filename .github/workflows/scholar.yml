@@ -24,6 +24,7 @@ jobs:
           curl -L -o scholar.py https://raw.githubusercontent.com/ckreibich/scholar.py/master/scholar.py
 
       - name: Run updater
+        timeout-minutes: 1
         run: python update.py
 
       - name: Commit metrics

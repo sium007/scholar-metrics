@@ -11,7 +11,12 @@ cmd = [
     "--citation", "bt"
 ]
 
-result = subprocess.run(cmd, capture_output=True, text=True)
+result = subprocess.run(
+    cmd,
+    capture_output=True,
+    text=True,
+    timeout=45
+)
 
 text = result.stdout
 

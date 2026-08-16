@@ -19,14 +19,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - run: pip install scholarly
+      - name: Download scholar.py
+        run: |
+          curl -L -o scholar.py https://raw.githubusercontent.com/ckreibich/scholar.py/master/scholar.py
 
-      - run: python update.py
+      - name: Run updater
+        run: python update.py
 
-      - name: Commit changes
+      - name: Commit metrics
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add metrics.json
-          git diff --cached --quiet || git commit -m "Auto update metrics"
+          git diff --cached --quiet || git commit -m "Update Scholar metrics"
           git push

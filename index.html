@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff;
+}
+.card{
+  padding:18px;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+}
+.name{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:2px;
+}
+.sub{
+  color:#666;
+  margin-bottom:18px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  text-align:center;
+}
+.value{
+  font-size:30px;
+  font-weight:bold;
+  color:#1a73e8;
+}
+.label{
+  color:#666;
+  font-size:13px;
+}
+.footer{
+  margin-top:16px;
+  font-size:11px;
+  color:#888;
+  text-align:right;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="name">Syed Muktadir Al Sium</div>
+  <div class="sub">Google Scholar Metrics</div>
+
+  <div class="grid">
+    <div>
+      <div class="value" id="c">...</div>
+      <div class="label">Citations</div>
+    </div>
+    <div>
+      <div class="value" id="h">...</div>
+      <div class="label">h-index</div>
+    </div>
+    <div>
+      <div class="value" id="i">...</div>
+      <div class="label">i10-index</div>
+    </div>
+  </div>
+
+  <div class="footer" id="u"></div>
+</div>
+
+<script>
+fetch("metrics.json")
+.then(r=>r.json())
+.then(d=>{
+  document.getElementById("c").textContent=d.citations;
+  document.getElementById("h").textContent=d.h_index;
+  document.getElementById("i").textContent=d.i10_index;
+  document.getElementById("u").textContent="Updated: "+d.updated;
+});
+</script>
+
+</body>
+</html>
